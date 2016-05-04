@@ -1,4 +1,7 @@
 # Unity-Shaker
+Perlin noise based shaking - for cameras, hits, and stuff.
+
+### Usage
 1. Add Shaker.cs to gameobject
 2. Define maximume movement and rodation areas (TODO: Via code)
   * set Default shake power if desired
@@ -14,3 +17,5 @@ Ex.)
   
 ### TODO:
 * Define shake position/roatation via code.
+* Remove default shake strength
+* rename power to strength
