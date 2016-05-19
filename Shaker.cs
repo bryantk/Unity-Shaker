@@ -34,16 +34,16 @@ public class Shaker : MonoBehaviour {
     /// Set current position and rotation as 'origin'
     /// </summary>
     void SetOrigin() {
-        origin = transform.position;
-        originRotation = transform.rotation;
+        origin = transform.localPosition;
+        originRotation = transform.localRotation;
     }
 
     /// <summary>
     /// Revert the transform to the original position and rotation
     /// </summary>
     void RevertOrigin() {
-        transform.position = origin;
-        transform.rotation = originRotation;
+        transform.localPosition = origin;
+        transform.localRotation = originRotation;
         co = null;
     }
 
@@ -80,19 +80,19 @@ public class Shaker : MonoBehaviour {
                 q.z = (Mathf.PerlinNoise(noise.x, noise.y - step) * 2f - 1f) * RotationScale.z;
             // Update transform
             transform.rotation = Quaternion.Euler(originRotation.eulerAngles + q);
-            transform.position = origin + offset;
+            transform.localPosition = origin + offset;
             step += speed;
             elapsed += Time.deltaTime;
             yield return null;
         }
         // Smoothly return to start (this bleeds over the given 'duration')
         float dt = 0;
-        Vector3 at = transform.position;
-        Quaternion rot = transform.rotation;
+        Vector3 at = transform.localPosition;
+        Quaternion rot = transform.localRotation;
         while (dt < 1)
         {
-            transform.position = Vector3.Lerp(at, origin, dt);
-            transform.rotation = Quaternion.Lerp(rot, originRotation, dt);
+            transform.localPosition = Vector3.Lerp(at, origin, dt);
+            transform.localRotation = Quaternion.Lerp(rot, originRotation, dt);
             dt += shakeSpeed / 50f;
             yield return null;
         }
