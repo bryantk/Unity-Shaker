@@ -20,13 +20,13 @@ public class Shaker : MonoBehaviour {
     /// </summary>
     /// <param name="power">How violent to shake (0-50)</param>
     /// <param name="duration">Duration of shaking</param>
-    public void Shake(int power, float duration) {
+    public void Shake(float duration, int power) {
         if (co != null)
         {
             StopCoroutine(co);
             RevertOrigin();
         }
-        shakeSpeed = power;
+        shakeSpeed = power > 0 ? power : shakeSpeed;
         co = StartCoroutine(DoShake(duration));
     }
 
