@@ -18,9 +18,9 @@ public class Shaker : MonoBehaviour {
     /// <summary>
     /// Shake at POWER for DURATION seconds. Multiple calls will yield most recent only.
     /// </summary>
-    /// <param name="power">How violent to shake (0-50)</param>
     /// <param name="duration">Duration of shaking</param>
-    public void Shake(float duration, int power) {
+    /// <param name="power">Optional. How violent to shake (0-50). Defaults to previous used Power.</param>
+    public void Shake(float duration, int power=0) {
         if (co != null)
         {
             StopCoroutine(co);
